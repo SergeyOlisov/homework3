@@ -1,0 +1,393 @@
+//Вывести на экран фигуры заполненные звездочками. Диалог с пользователем
+//реализовать при помощи меню.
+
+#include <iostream>
+
+using namespace std;
+const int SIZE = 11;
+char massive[SIZE][SIZE];
+void FillMassive()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0 ;j < SIZE; j++)
+        {
+            massive[i][j] = ' ';
+        }
+    }
+}
+void Show()
+
+{
+    cout << " _________________________________" << endl;
+    for (int i = 0; i < SIZE; i++)
+    {
+        cout << "|";
+        for (int j = 0; j < SIZE; j++)
+        {
+            cout << " " << massive[i][j] << " ";
+        }
+        cout << "|" <<  endl;
+    }
+    cout << " _________________________________";
+}
+void Case1()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = i; j < SIZE; j++)
+        {
+            massive[i][j] = '*';
+        }
+    }
+}
+void Case2()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < i+1; j++)
+        {
+            massive[i][j] = '*';
+        }
+    }
+}
+void Case3()
+{
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = i; j < SIZE - i; j++)
+        {
+            massive[i][j] = '*';
+        }
+    }
+}
+void Case4()
+{
+    for (int i = 10, k = 0; i > 4; i--)
+    {
+        for (int j = k ; j < SIZE - k; j++)
+        {
+            massive[i][j] = '*';
+        }
+        k++;
+    }
+}
+void Case5()
+{
+    Case3();
+    Case4();
+}
+void Case7()
+{
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = i; j < SIZE - i; j++)
+        {
+            massive[j][i] = '*';
+        }
+    }
+}
+void Case8()
+{
+    for (int i = 10, k = 0; i > 4; i--)
+    {
+        for (int j = k ; j < SIZE - k; j++)
+        {
+            massive[j][i] = '*';
+        }
+        k++;
+    }
+}
+void Case6()
+{
+    Case7();
+    Case8();
+}
+void Case9()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE - i; j++)
+        {
+            massive[i][j] = '*';
+        }
+    }
+}
+void Case0()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = SIZE - 1 - i; j < SIZE; j++)
+        {
+            massive[i][j] = '*';
+        }
+    }
+}
+
+int main()
+{
+    FillMassive();
+    int menu;
+    cout << "The program displays different shapes on the screen; for output, enter the following command:" << endl;
+    cout << "1 - Triangle in the upper right corner" << endl;
+    cout << "2 - Triangle in the lower left" << endl;
+    cout << "3 - The triangle above" << endl;
+    cout << "4 - The triangle below" << endl;
+    cout << "5 - Two triangles: above and below" << endl;
+    cout << "6 - Two triangles: left and right" << endl;
+    cout << "7 - Triangle on the left" << endl;
+    cout << "8 - Triangle on the right" << endl;
+    cout << "9 - Triangle in the upper left corner" << endl;
+    cout << "0 - Triangle in the lower right corner" << endl;
+    cin >> menu;
+    switch (menu)
+    {
+        case 1:
+            Case1();
+            Show();
+            break;
+        case 2:
+            Case2();
+            Show();
+            break;
+        case 3:
+            Case3();
+            Show();
+            break;
+        case 4:
+            Case4();
+            Show();
+            break;
+        case 5:
+            Case5();
+            Show();
+            break;
+        case 6:
+            Case6();
+            Show();
+            break;
+        case 7:
+            Case7();
+            Show();
+            break;
+        case 8:
+            Case8();
+            Show();
+            break;
+        case 9:
+            Case9();
+            Show();
+            break;
+        case 0:
+            Case0();
+            Show();
+            break;
+        default:
+            cout << "Error";
+    }
+}
+
+//Подсчитать количество целых чисел в диапазоне от 100 до 999, у которых есть две
+//одинаковые цифры.
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    const int SIZE = 3;
+    int massive[SIZE] = {1,0,0};
+    int concurrence = 0;
+    do {
+        if (massive[0] == massive[1] || massive[0] == massive[2] || massive[1] == massive[2])
+        {
+            concurrence++;
+        }
+        massive[2]++;
+        if (massive[2] > 9)
+        {
+            massive[1]++;
+            massive[2] = 0;
+        }
+        if (massive[1] > 9)
+        {
+            massive[0]++;
+            massive[1] = 0;
+        }
+    } while (massive[0] < 10);
+    cout << "Numbers ranging from 100 to 999, which have two identical digits, equals " << concurrence;
+}
+
+//Подсчитать количество целых чисел в диапазоне от 100 до 999, у которых все
+//цифры разные. 
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    const int SIZE = 3;
+    int massive[SIZE] = {1,0,0};
+    int concurrence = 0;
+    do {
+        if (massive[0] != massive[1] && massive[0] != massive[2] && massive[1] != massive[2])
+        {
+            concurrence++;
+        }
+        massive[2]++;
+        if (massive[2] > 9)
+        {
+            massive[1]++;
+            massive[2] = 0;
+        }
+        if (massive[1] > 9)
+        {
+            massive[0]++;
+            massive[1] = 0;
+        }
+    } while (massive[0] < 10);
+    cout << "The numbers in the range from 100 to 999, in which all the numbers are different, is " << concurrence;
+}
+
+//Пользователь вводит любое целое число. Необходимо из этого целого числа удалить
+//все цифры 3 и 6 и вывести обратно на экран. 
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+        int x = 0, y, z = 0, r = 0;
+        cin >> y;
+
+        while (y > 0)
+        {
+            if(y % 10 != 3 && y % 10 != 6)
+            {
+                x = x * 10;
+                x = x + y % 10;
+                if (y % 10 == 0 && r == 0)
+                {
+                    z++;
+                }
+                r++;
+                if (y % 10 == 0)
+                {
+                    r--;
+                }
+            }
+            y = y / 10;
+        }
+        cout << endl;
+        while (x > 0)
+        {
+            cout << x % 10;
+            x = x / 10;
+        }
+        for (int i = 0; i < z; i++)
+        {
+            cout << 0;
+        }
+}
+
+//Пользователь вводит любое целое число А. Необходимо вывести все целые числа В,
+//для которых А делится без остатка на В*В и не делится без остатка на В*В*В
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a = 0;
+    cin >> a;
+    for (int b = 1; b < a; b++)
+    {
+        if (a%(b*b) == 0)
+        {
+                cout << b << " ";
+        }
+    }
+    cout << endl << endl;
+    for (int b = 1; b < a; b++)
+    {
+        if (a%(b*b*b) != 0)
+        {
+            cout << b << " ";
+        }
+    }
+}
+
+//Пользователь вводит целое число А. Программа должна определить, что куб суммы
+//цифр этого числа равен А*А
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x, y=0, z;
+    cout << "Enter an integer. The program must determine that the cube of the sum of the digits of this number is equal to the square of this number." << endl;
+    cin >> x;
+    z = x;
+    while (z > 0)
+    {
+        y = y + z%10;
+        z = z / 10;
+    }
+    if (x*x == y*y*y)
+    {
+        cout << "Equality!";
+    } else {
+        cout << "Nope";
+    }
+}
+
+//Пользователь вводит целое число. Необходимо вывести все целые числа, на которое
+//заданное число делится без остатка.
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x;
+    cin >> x;
+    for (int i = 1; i < x; i++)
+    {
+        if (x % i == 0)
+        {
+            cout  << i << " ";
+        }
+    }
+}
+
+
+//Пользователь вводит два целых числа. Необходимо вывести все целые числа, на
+//которые оба введенных числа делятся без остатка.
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x, y;
+    cin >> x;
+    cin >> y;
+    int i = 1;
+    while (i < x)
+    {
+        if (x % i == 0 && y % i == 0)
+        {
+            cout  << i << " ";
+        }
+        i++;
+    }
+}
+// задача подобная прошлой, по этому решил с циклом while вместо for написать.
